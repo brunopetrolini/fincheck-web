@@ -1,0 +1,3 @@
+# Fincheck
+
+Controle suas finanças.
