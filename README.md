@@ -1,3 +1,3 @@
 # Fincheck
 
-Controle suas finanças.
+Controle de finanças pessoais.
