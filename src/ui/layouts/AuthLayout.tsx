@@ -8,10 +8,12 @@ export function AuthLayout() {
   return (
     <div>
       <div className="flex h-screen">
-        <div className="flex h-full w-1/2 flex-col items-center justify-center gap-16 p-8">
+        <div className="flex h-full w-1/2 flex-col items-center justify-center p-8">
           <Logo className="h-6 text-gray-500" />
 
-          <Outlet />
+          <div className="mt-16 w-full max-w-md">
+            <Outlet />
+          </div>
         </div>
 
         <div className="relative flex h-full w-1/2 items-center justify-center p-8">
