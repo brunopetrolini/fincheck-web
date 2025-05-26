@@ -21,7 +21,9 @@ export function Login() {
         <Input name="email" type="email" placeholder="E-mail" />
         <Input name="password" type="password" placeholder="Senha" />
 
-        <Button type="submit" />
+        <Button type="submit" className="mt-2">
+          Entrar
+        </Button>
       </form>
     </div>
   );
