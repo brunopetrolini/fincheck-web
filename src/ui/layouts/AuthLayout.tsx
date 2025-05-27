@@ -16,7 +16,7 @@ export function AuthLayout() {
           </div>
         </div>
 
-        <div className="relative hidden h-full w-1/2 items-center justify-center p-8 lg:flex">
+        <div className="relative mx-8 hidden h-full w-1/2 items-center justify-center py-8 lg:flex">
           <img src={illustration} className="h-full max-h-[960px] w-full max-w-[656px] rounded-[32px] object-cover" />
 
           <div className="absolute bottom-8 w-full max-w-[656px] rounded-b-[32px] bg-white px-10 py-12">
