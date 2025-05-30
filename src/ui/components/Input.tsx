@@ -27,9 +27,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholder, na
       </div>
 
       {hasError && (
-        <div className="mt-2 flex items-center justify-start gap-2">
-          <CrossCircledIcon className="text-red-900" />
-          <span className="text-xs text-red-900">{error}</span>
+        <div className="mt-2 flex items-center justify-start gap-2 text-red-900">
+          <CrossCircledIcon />
+          <span className="text-xs">{error}</span>
         </div>
       )}
     </div>
