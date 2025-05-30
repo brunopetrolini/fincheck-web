@@ -2,6 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { api } from '@/app/services/api';
+
 const formSchema = z.object({
   name: z.string().nonempty({ message: 'Nome é obrigatório' }),
   email: z.string().nonempty({ message: 'E-mail é obrigatório' }).email({ message: 'E-mail inválido' }),
@@ -31,8 +33,8 @@ export function useRegisterController() {
     resolver: zodResolver(formSchema),
   });
 
-  const handleSubmit = hookFormHandleSubmit((data) => {
-    console.log(data);
+  const handleSubmit = hookFormHandleSubmit(async (data) => {
+    await api.post('/auth/sign-up', data);
   });
 
   return { handleSubmit, register, errors };
