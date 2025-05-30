@@ -25,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholder, na
         </label>
         <input {...props} id={inputId} name={name} className="text-sm outline-none" ref={ref} />
       </div>
+
       {hasError && (
         <div className="mt-2 flex items-center justify-start gap-2">
           <img src={errorIcon} className="h-4 w-4" />
