@@ -6,7 +6,7 @@ import { Input } from '@/ui/components/Input';
 import { useLoginController } from './useLoginController';
 
 export function Login() {
-  const { handleSubmit, register } = useLoginController();
+  const { handleSubmit, register, errors } = useLoginController();
 
   return (
     <div className="flex flex-col gap-16">
@@ -22,8 +22,8 @@ export function Login() {
       </header>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Input type="email" placeholder="E-mail" {...register('email', { required: true })} />
-        <Input type="password" placeholder="Senha" {...register('password', { required: true })} />
+        <Input type="email" placeholder="E-mail" {...register('email')} error={errors.email?.message} />
+        <Input type="password" placeholder="Senha" {...register('password')} error={errors.password?.message} />
 
         <Button type="submit" className="mt-2">
           Entrar
