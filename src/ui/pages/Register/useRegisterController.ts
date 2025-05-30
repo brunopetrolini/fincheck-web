@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = z.object({
+  name: z.string().nonempty({ message: 'Nome é obrigatório' }),
   email: z.string().nonempty({ message: 'E-mail é obrigatório' }).email({ message: 'E-mail inválido' }),
   password: z
     .string()
@@ -21,7 +22,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function useLoginController() {
+export function useRegisterController() {
   const {
     handleSubmit: hookFormHandleSubmit,
     register,
