@@ -1,6 +1,6 @@
 import { api } from '../api';
 
-type SignUpParams = {
+export type SignUpParams = {
   name: string;
   email: string;
   password: string;

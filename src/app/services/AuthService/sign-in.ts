@@ -1,6 +1,6 @@
 import { api } from '../api';
 
-type SignInParams = {
+export type SignInParams = {
   email: string;
   password: string;
 };

@@ -1,8 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { z } from 'zod';
 
 import { AuthService } from '@/app/services/AuthService';
+import type { SignUpParams } from '@/app/services/AuthService/sign-up';
 
 const formSchema = z.object({
   name: z.string().nonempty({ message: 'Nome é obrigatório' }),
@@ -33,10 +37,21 @@ export function useRegisterController() {
     resolver: zodResolver(formSchema),
   });
 
-  const handleSubmit = hookFormHandleSubmit(async (data) => {
-    const { accessToken } = await AuthService.signUp(data);
-    console.log('Usuário registrado com sucesso:', accessToken);
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (data: SignUpParams) => AuthService.signUp(data),
   });
 
-  return { handleSubmit, register, errors };
+  const handleSubmit = hookFormHandleSubmit(async (data) => {
+    try {
+      await mutateAsync(data);
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 409) {
+        toast.error('Oops! Já existe uma conta com este e-mail.');
+      } else {
+        toast.error('Erro ao criar conta. Por favor, tente novamente.');
+      }
+    }
+  });
+
+  return { handleSubmit, register, errors, isLoading: isPending };
 }

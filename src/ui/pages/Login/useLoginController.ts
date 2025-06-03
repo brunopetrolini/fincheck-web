@@ -1,24 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { z } from 'zod';
 
 import { AuthService } from '@/app/services/AuthService';
+import type { SignInParams } from '@/app/services/AuthService/sign-in';
 
 const formSchema = z.object({
   email: z.string().nonempty({ message: 'E-mail é obrigatório' }).email({ message: 'E-mail inválido' }),
-  password: z
-    .string()
-    .nonempty({ message: 'Senha é obrigatória' })
-    .min(8, { message: 'A senha deve ter pelo menos 8 caracteres' })
-    .refine((password) => /[A-Z]/.test(password), {
-      message: 'A senha deve conter pelo menos uma letra maiúscula',
-    })
-    .refine((password) => /[0-9]/.test(password), {
-      message: 'A senha deve conter pelo menos um número',
-    })
-    .refine((password) => /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password), {
-      message: 'A senha deve conter pelo menos um caractere especial',
-    }),
+  password: z.string().nonempty({ message: 'Senha é obrigatória' }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -32,10 +23,17 @@ export function useLoginController() {
     resolver: zodResolver(formSchema),
   });
 
-  const handleSubmit = hookFormHandleSubmit(async (data) => {
-    const { accessToken } = await AuthService.signIn(data);
-    console.log('Usuário logado com sucesso:', accessToken);
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (data: SignInParams) => AuthService.signIn(data),
   });
 
-  return { handleSubmit, register, errors };
+  const handleSubmit = hookFormHandleSubmit(async (data) => {
+    try {
+      await mutateAsync(data);
+    } catch {
+      toast.error('Oops! E-mail ou senha inválidos.');
+    }
+  });
+
+  return { handleSubmit, register, errors, isLoading: isPending };
 }

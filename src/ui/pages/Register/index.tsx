@@ -6,7 +6,7 @@ import { Input } from '@/ui/components/Input';
 import { useRegisterController } from './useRegisterController';
 
 export function Register() {
-  const { handleSubmit, register, errors } = useRegisterController();
+  const { handleSubmit, register, errors, isLoading } = useRegisterController();
 
   return (
     <div className="flex flex-col gap-16">
@@ -38,7 +38,7 @@ export function Register() {
         />
         <Input type="password" placeholder="Senha" {...register('password')} error={errors.password?.message} />
 
-        <Button type="submit" className="mt-2">
+        <Button type="submit" className="mt-2" isLoading={isLoading}>
           Criar conta
         </Button>
       </form>
