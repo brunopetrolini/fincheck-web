@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 
+import { useAuth } from '@/app/hooks/useAuth';
 import { AuthService } from '@/app/services/AuthService';
 import type { SignUpParams } from '@/app/services/AuthService/sign-up';
 
@@ -41,9 +42,12 @@ export function useRegisterController() {
     mutationFn: (data: SignUpParams) => AuthService.signUp(data),
   });
 
+  const { signIn } = useAuth();
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutateAsync(data);
+      const { accessToken } = await mutateAsync(data);
+      signIn(accessToken);
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 409) {
         toast.error('Oops! Já existe uma conta com este e-mail.');

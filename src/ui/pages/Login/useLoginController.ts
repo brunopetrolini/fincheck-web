@@ -32,8 +32,8 @@ export function useLoginController() {
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutateAsync(data);
-      signIn();
+      const { accessToken } = await mutateAsync(data);
+      signIn(accessToken);
     } catch {
       toast.error('Oops! E-mail ou senha inválidos.');
     }
