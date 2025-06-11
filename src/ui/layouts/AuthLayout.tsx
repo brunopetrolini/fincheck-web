@@ -7,7 +7,7 @@ import { Logo } from '../components/Logo';
 export function AuthLayout() {
   return (
     <div>
-      <div className="flex h-screen">
+      <div className="flex h-screen select-none">
         <div className="flex h-full w-full flex-col items-center justify-center p-8 lg:w-1/2">
           <Logo className="h-6 text-gray-500" />
 

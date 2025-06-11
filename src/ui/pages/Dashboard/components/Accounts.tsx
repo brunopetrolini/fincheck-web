@@ -6,7 +6,7 @@ export function Accounts() {
   const [isShowBalance, setIsShowBalance] = useState(true);
 
   return (
-    <div className="flex-1 select-none rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
+    <div className="flex-1 rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
       <div className="flex flex-col">
         <span className="font-normal tracking-[-0.5px]">Saldo total</span>
         <div className="flex flex-row items-center gap-2">
