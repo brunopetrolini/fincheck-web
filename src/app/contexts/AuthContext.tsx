@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { createContext, type ReactNode, useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
+import { PageLoader } from '@/ui/components/PageLoader';
+
 import { localStorageKeys } from '../config/local-storage-keys';
 import { UsersService } from '../services/UsersService';
 
@@ -19,10 +21,11 @@ function AuthProvider({ children }: { children: ReactNode }) {
     return !!storedAccessToken;
   });
 
-  const { isError } = useQuery({
+  const { isError, isFetching, isSuccess } = useQuery({
     queryKey: ['users', 'me'],
     queryFn: () => UsersService.me(),
     enabled: signedIn,
+    staleTime: Infinity,
   });
 
   const signOut = useCallback(() => {
@@ -42,7 +45,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [isError, signOut]);
 
-  return <AuthContext.Provider value={{ signedIn, signIn, signOut }}>{children}</AuthContext.Provider>;
+  if (!isFetching) return <PageLoader />;
+
+  return <AuthContext.Provider value={{ signedIn: isSuccess, signIn, signOut }}>{children}</AuthContext.Provider>;
 }
 
 export { AuthContext, AuthProvider };
