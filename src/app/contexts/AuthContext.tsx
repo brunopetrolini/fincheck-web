@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createContext, type ReactNode, useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { PageLoader } from '@/ui/components/PageLoader';
+import { LaunchScreen } from '@/ui/components/LaunchScreen';
 
 import { localStorageKeys } from '../config/local-storage-keys';
 import { reactQueryKeys } from '../config/react-query-keys';
@@ -49,10 +49,11 @@ function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [isError, signOut]);
 
-  if (!isFetching) return <PageLoader />;
-
   return (
-    <AuthContext.Provider value={{ signedIn: isSuccess && signedIn, signIn, signOut }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signedIn: isSuccess && signedIn, signIn, signOut }}>
+      <LaunchScreen isLoading={isFetching} />
+      {!isFetching && children}
+    </AuthContext.Provider>
   );
 }
 
