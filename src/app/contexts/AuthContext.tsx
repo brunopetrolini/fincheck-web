@@ -47,7 +47,9 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   if (!isFetching) return <PageLoader />;
 
-  return <AuthContext.Provider value={{ signedIn: isSuccess, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ signedIn: isSuccess && signedIn, signIn, signOut }}>{children}</AuthContext.Provider>
+  );
 }
 
 export { AuthContext, AuthProvider };
