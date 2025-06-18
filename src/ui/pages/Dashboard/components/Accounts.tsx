@@ -2,6 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 
 import { EyeIcon } from '@/ui/components/icons/EyeIcon';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 import { AccountCard } from './AccountCard';
 
@@ -14,7 +15,7 @@ export function Accounts() {
         <span className="block font-normal tracking-[-0.5px]">Saldo total</span>
 
         <div className="flex flex-row items-center gap-2">
-          <strong className="text-3xl tracking-[-1px]">R$ 1000,00</strong>
+          <strong className="text-3xl tracking-[-1px]">{formatCurrency(1000)}</strong>
 
           <button className="flex items-center justify-center p-3" onClick={() => setIsShowBalance(!isShowBalance)}>
             <EyeIcon open={isShowBalance} />
