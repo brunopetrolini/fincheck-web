@@ -10,7 +10,7 @@ import { AccountSliderNavigation } from './AccountsSliderNavigation';
 import { useAccountsController } from './useAccountsController';
 
 export function Accounts() {
-  const { sliderState, setSliderState, isShowBalance, toggleShowBalance } = useAccountsController();
+  const { sliderState, setSliderState, isShowBalance, toggleShowBalance, windowWidth } = useAccountsController();
 
   return (
     <div className="flex h-full flex-col rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
@@ -26,11 +26,11 @@ export function Accounts() {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col justify-end">
+      <div className="mt-10 flex flex-1 flex-col justify-end lg:mt-0">
         <div>
           <Swiper
             spaceBetween={16}
-            slidesPerView={2.1}
+            slidesPerView={windowWidth > 500 ? 2.1 : 1.2}
             onSlideChange={({ isBeginning, isEnd }) => {
               setSliderState({ isBeginning, isEnd });
             }}
@@ -38,7 +38,9 @@ export function Accounts() {
             <div slot="container-start" className="mb-4 flex items-center justify-between">
               <strong className="text-lg tracking-[-1px]">Minhas contas</strong>
 
-              <AccountSliderNavigation isBeginning={sliderState.isBeginning} isEnd={sliderState.isEnd} />
+              {windowWidth > 500 && (
+                <AccountSliderNavigation isBeginning={sliderState.isBeginning} isEnd={sliderState.isEnd} />
+              )}
             </div>
 
             <SwiperSlide>
