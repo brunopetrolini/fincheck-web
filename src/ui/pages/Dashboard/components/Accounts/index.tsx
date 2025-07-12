@@ -10,7 +10,7 @@ import { AccountSliderNavigation } from './AccountsSliderNavigation';
 import { useAccountsController } from './useAccountsController';
 
 export function Accounts() {
-  const { slider, balance } = useAccountsController();
+  const { sliderState, setSliderState, isShowBalance, toggleShowBalance } = useAccountsController();
 
   return (
     <div className="flex h-full flex-col rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
@@ -20,8 +20,8 @@ export function Accounts() {
         <div className="flex flex-row items-center gap-2">
           <strong className="text-3xl tracking-[-1px]">{formatCurrency(1000)}</strong>
 
-          <button className="flex items-center justify-center p-3" onClick={balance.toggleShowBalance}>
-            <EyeIcon open={balance.isShowBalance} />
+          <button className="flex items-center justify-center p-3" onClick={toggleShowBalance}>
+            <EyeIcon open={isShowBalance} />
           </button>
         </div>
       </div>
@@ -31,15 +31,14 @@ export function Accounts() {
           <Swiper
             spaceBetween={16}
             slidesPerView={2.1}
-            onSlideChange={(swiper) => {
-              slider.setIsFirstSlide(swiper.isBeginning);
-              slider.setIsLastSlide(swiper.isEnd);
+            onSlideChange={({ isBeginning, isEnd }) => {
+              setSliderState({ isBeginning, isEnd });
             }}
           >
             <div slot="container-start" className="mb-4 flex items-center justify-between">
               <strong className="text-lg tracking-[-1px]">Minhas contas</strong>
 
-              <AccountSliderNavigation isBeginning={slider.isFirstSlide} isEnd={slider.isLastSlide} />
+              <AccountSliderNavigation isBeginning={sliderState.isBeginning} isEnd={sliderState.isEnd} />
             </div>
 
             <SwiperSlide>
