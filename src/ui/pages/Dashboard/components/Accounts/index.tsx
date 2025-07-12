@@ -1,0 +1,61 @@
+import 'swiper/swiper-bundle.css';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { EyeIcon } from '@/ui/components/icons/EyeIcon';
+import { formatCurrency } from '@/utils/formatCurrency';
+
+import { AccountCard } from './AccountCard';
+import { AccountSliderNavigation } from './AccountsSliderNavigation';
+import { useAccountsController } from './useAccountsController';
+
+export function Accounts() {
+  const { slider, balance } = useAccountsController();
+
+  return (
+    <div className="flex h-full flex-col rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
+      <div>
+        <span className="block font-normal tracking-[-0.5px]">Saldo total</span>
+
+        <div className="flex flex-row items-center gap-2">
+          <strong className="text-3xl tracking-[-1px]">{formatCurrency(1000)}</strong>
+
+          <button className="flex items-center justify-center p-3" onClick={balance.toggleShowBalance}>
+            <EyeIcon open={balance.isShowBalance} />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col justify-end">
+        <div>
+          <Swiper
+            spaceBetween={16}
+            slidesPerView={2.1}
+            onSlideChange={(swiper) => {
+              slider.setIsFirstSlide(swiper.isBeginning);
+              slider.setIsLastSlide(swiper.isEnd);
+            }}
+          >
+            <div slot="container-start" className="mb-4 flex items-center justify-between">
+              <strong className="text-lg tracking-[-1px]">Minhas contas</strong>
+
+              <AccountSliderNavigation isBeginning={slider.isFirstSlide} isEnd={slider.isLastSlide} />
+            </div>
+
+            <SwiperSlide>
+              <AccountCard color="#7950F2" name="Nubank" balance={123} type="CASH" />
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <AccountCard color="#333" name="XP" balance={123} type="INVESTMENT" />
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <AccountCard color="#0f0" name="Carteira" balance={123} type="CHECKING" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
+    </div>
+  );
+}

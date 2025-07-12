@@ -1,10 +1,11 @@
-import { CategoryIcon } from '@/ui/components/icons/categories/CategoryIcon';
+import { BankAccountTypeIcon } from '@/ui/components/icons/BankAccountTypeIcon';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 type AccountCardProps = {
   color: string;
   name: string;
   balance: number;
+  type: 'CASH' | 'CHECKING' | 'INVESTMENT';
 };
 
 export function AccountCard({ color, name, balance }: AccountCardProps) {
@@ -14,7 +15,7 @@ export function AccountCard({ color, name, balance }: AccountCardProps) {
       style={{ borderBottomColor: color }}
     >
       <div className="flex flex-col gap-4">
-        <CategoryIcon type="INCOME" />
+        <BankAccountTypeIcon type="CASH" />
         <span className="tracking-[-0.5px]">{name}</span>
       </div>
 
