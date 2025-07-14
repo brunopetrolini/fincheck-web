@@ -6,7 +6,7 @@ type AccountSliderNavigationProps = {
   isEnd: boolean;
 };
 
-export function AccountSliderNavigation({ isBeginning, isEnd }: AccountSliderNavigationProps) {
+export function SliderNavigation({ isBeginning, isEnd }: AccountSliderNavigationProps) {
   const swiper = useSwiper();
 
   return (
