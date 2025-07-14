@@ -6,7 +6,7 @@ import { EyeIcon } from '@/ui/components/icons/EyeIcon';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { AccountCard } from './AccountCard';
-import { AccountSliderNavigation } from './AccountsSliderNavigation';
+import { SliderNavigation } from './SliderNavigation';
 import { useAccountsController } from './useAccountsController';
 
 export function Accounts() {
@@ -39,7 +39,7 @@ export function Accounts() {
               <strong className="text-lg tracking-[-1px]">Minhas contas</strong>
 
               {windowWidth > 500 && (
-                <AccountSliderNavigation isBeginning={sliderState.isBeginning} isEnd={sliderState.isEnd} />
+                <SliderNavigation isBeginning={sliderState.isBeginning} isEnd={sliderState.isEnd} />
               )}
             </div>
 
