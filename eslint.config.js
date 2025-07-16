@@ -28,6 +28,7 @@ export default tseslint.config(
       'simple-import-sort/exports': 'error',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'prettier/prettier': 'error',
+      'react-refresh/only-export-components': 'off',
     },
   },
 );

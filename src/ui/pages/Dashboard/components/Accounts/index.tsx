@@ -3,6 +3,7 @@ import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { EyeIcon } from '@/ui/components/icons/EyeIcon';
+import { cn } from '@/utils/cn';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { AccountCard } from './AccountCard';
@@ -10,7 +11,8 @@ import { SliderNavigation } from './SliderNavigation';
 import { useAccountsController } from './useAccountsController';
 
 export function Accounts() {
-  const { sliderState, setSliderState, isShowBalance, toggleShowBalance, windowWidth } = useAccountsController();
+  const { sliderState, setSliderState, windowWidth, areValuesVisible, toggleValuesVisibility } =
+    useAccountsController();
 
   return (
     <div className="flex h-full flex-col rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
@@ -18,10 +20,12 @@ export function Accounts() {
         <span className="block font-normal tracking-[-0.5px]">Saldo total</span>
 
         <div className="flex flex-row items-center gap-2">
-          <strong className="text-3xl tracking-[-1px]">{formatCurrency(1000)}</strong>
+          <strong className={cn('text-3xl tracking-[-1px]', !areValuesVisible && 'blur-md')}>
+            {formatCurrency(1000)}
+          </strong>
 
-          <button className="flex items-center justify-center p-3" onClick={toggleShowBalance}>
-            <EyeIcon open={isShowBalance} />
+          <button className="flex items-center justify-center p-3" onClick={toggleValuesVisibility}>
+            <EyeIcon open={!areValuesVisible} />
           </button>
         </div>
       </div>

@@ -2,18 +2,17 @@ import { useState } from 'react';
 
 import { useWindowWidth } from '@/app/hooks/useWindowWidth';
 
+import { useDashboard } from '../DashboardContext/useDashboard';
+
 export function useAccountsController() {
+  const { areValuesVisible, toggleValuesVisibility } = useDashboard();
+
   const windowWidth = useWindowWidth();
 
-  const [isShowBalance, setIsShowBalance] = useState(true);
   const [sliderState, setSliderState] = useState({
     isBeginning: true,
     isEnd: false,
   });
 
-  function toggleShowBalance() {
-    setIsShowBalance((prev) => !prev);
-  }
-
-  return { sliderState, setSliderState, isShowBalance, toggleShowBalance, windowWidth };
+  return { sliderState, setSliderState, windowWidth, areValuesVisible, toggleValuesVisibility };
 }
