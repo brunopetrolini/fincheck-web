@@ -64,7 +64,7 @@ export function Transactions() {
           </div>
 
           <div>
-            <span className={cn('font-medium tracking-[-0.5px] text-red-800', !areValuesVisible && 'blur-md')}>
+            <span className={cn('font-medium tracking-[-0.5px] text-red-800', !areValuesVisible && 'blur-sm')}>
               - {formatCurrency(123)}
             </span>
           </div>
@@ -81,7 +81,7 @@ export function Transactions() {
           </div>
 
           <div>
-            <span className={cn('font-medium tracking-[-0.5px] text-green-800', !areValuesVisible && 'blur-md')}>
+            <span className={cn('font-medium tracking-[-0.5px] text-green-800', !areValuesVisible && 'blur-sm')}>
               + {formatCurrency(13210)}
             </span>
           </div>

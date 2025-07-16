@@ -25,7 +25,7 @@ export function AccountCard({ color, name, balance }: AccountCardProps) {
       </div>
 
       <div className="flex flex-col">
-        <span className={cn('tracking-[-0.5px]', !areValuesVisible && 'blur-md')}>{formatCurrency(balance)}</span>
+        <span className={cn('tracking-[-0.5px]', !areValuesVisible && 'blur-sm')}>{formatCurrency(balance)}</span>
         <small className="text-sm font-normal text-gray-600">Saldo atual</small>
       </div>
     </div>
