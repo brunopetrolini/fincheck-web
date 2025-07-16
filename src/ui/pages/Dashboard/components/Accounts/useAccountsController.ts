@@ -5,6 +5,7 @@ import { useWindowWidth } from '@/app/hooks/useWindowWidth';
 import { useDashboard } from '../DashboardContext/useDashboard';
 
 export function useAccountsController() {
+  const [isLoading] = useState(true);
   const { areValuesVisible, toggleValuesVisibility } = useDashboard();
 
   const windowWidth = useWindowWidth();
@@ -14,5 +15,5 @@ export function useAccountsController() {
     isEnd: false,
   });
 
-  return { sliderState, setSliderState, windowWidth, areValuesVisible, toggleValuesVisibility };
+  return { sliderState, setSliderState, windowWidth, areValuesVisible, toggleValuesVisibility, isLoading };
 }
