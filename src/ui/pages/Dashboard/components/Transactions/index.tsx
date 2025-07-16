@@ -20,6 +20,8 @@ export function Transactions() {
   const { sliderState, setSliderState, areValuesVisible, isLoading, isContentLoading, transactions } =
     useTransactionsController();
 
+  const hasTransactions = transactions.length > 0;
+
   return (
     <div className="flex h-full w-full flex-col rounded-2xl bg-gray-100 px-4 py-8 lg:p-10">
       {isLoading && (
@@ -69,14 +71,14 @@ export function Transactions() {
             </div>
           ) : (
             <>
-              {transactions.length <= 0 && (
+              {!hasTransactions && (
                 <div className="flex flex-1 flex-col items-center justify-center gap-4">
                   <img src={emptyStateIllustration} alt="Empty state" />
                   <span className="text-gray-700">Não encontramos nenhuma transação!</span>
                 </div>
               )}
 
-              {transactions.length > 0 && (
+              {hasTransactions && (
                 <div className="mt-4 flex-1 space-y-2 overflow-y-auto">
                   <div className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4">
                     <div className="flex">
