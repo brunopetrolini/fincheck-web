@@ -34,7 +34,7 @@ function DropDownContent({ children, className, ...props }: BaseProps & MenuItem
     <MenuItems
       transition
       className={cn(
-        'mt-1 flex flex-col gap-2 rounded-2xl border border-gray-100 bg-white p-2 text-sm text-gray-800 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] outline-none transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0',
+        'z-20 mt-1 flex flex-col gap-2 rounded-2xl border border-gray-100 bg-white p-2 text-sm text-gray-800 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] outline-none transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0',
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function DropDownItem({ children, className, onClick, ...props }: ItemProps) {
     <MenuItem {...props}>
       <button
         className={cn(
-          'flex min-h-12 items-center justify-start rounded-lg px-4 py-2 text-left transition-colors data-[focus]:bg-gray-50',
+          'flex min-h-10 items-center justify-start rounded-lg px-4 py-2 text-left transition-colors data-[focus]:bg-gray-50',
           className,
         )}
         onClick={onClick}
