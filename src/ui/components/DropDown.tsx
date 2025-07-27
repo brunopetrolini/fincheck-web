@@ -48,7 +48,7 @@ function DropDownItem({ children, className, onClick, ...props }: ItemProps) {
     <MenuItem {...props}>
       <button
         className={cn(
-          'flex min-h-12 items-center justify-start rounded-lg p-2 text-left transition-all hover:bg-gray-50',
+          'flex min-h-12 items-center justify-start rounded-lg px-4 py-2 text-left transition-colors data-[focus]:bg-gray-50',
           className,
         )}
         onClick={onClick}
