@@ -1,6 +1,10 @@
-export function Transport() {
+type TransportProps = {
+  size?: number;
+};
+
+export function Transport({ size = 44 }: TransportProps) {
   return (
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="1" y="1" width="42" height="42" rx="21" fill="#FFF9DB" />
       <path
         d="M25.1556 23.5562H26.881"

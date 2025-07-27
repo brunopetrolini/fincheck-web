@@ -24,7 +24,7 @@ function App() {
         <Router />
       </AuthProvider>
 
-      <ReactQueryDevtools />
+      <ReactQueryDevtools buttonPosition="bottom-left" />
     </QueryClientProvider>
   );
 }
