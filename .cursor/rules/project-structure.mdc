@@ -46,5 +46,5 @@ src/
 ## Language Standards
 
 - **Code**: All code, comments, and commit messages in English
-- **Commits**: Follow Conventional Commits (e.g., "feat: add modal component")
+- **Commits**: Follow Conventional Commits standard with messages in English (e.g., "feat: add modal component", "fix: resolve authentication bug")
 - **Communication**: Respond to users in Portuguese
