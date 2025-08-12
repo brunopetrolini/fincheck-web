@@ -1,0 +1,67 @@
+---
+globs: *.tsx,*.ts
+description: TailwindCSS styling standards and custom theme usage
+---
+
+# TailwindCSS Styling Standards
+
+## Utility Function
+
+- **Always use** the `cn()` utility from [cn.ts](mdc:src/utils/cn.ts) for className composition
+- Combines clsx + tailwind-merge for conditional classes and conflict resolution
+
+```typescript
+import { cn } from '@/utils/cn';
+
+export function Button({ className, variant, ...props }: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        'base-styles',
+        variant === 'primary' && 'primary-styles',
+        className
+      )}
+      {...props}
+    />
+  );
+}
+```
+
+## Custom Color Palette
+
+Follow the custom colors defined in [tailwind.config.js](mdc:tailwind.config.js):
+
+- **Primary**: `teal-*` (main brand color)
+- **Success**: `green-*`
+- **Error**: `red-*`
+- **Neutral**: `gray-*`
+
+## Custom Animations
+
+Use the predefined animations:
+
+- `slide-up-and-fade`
+- `slide-down-and-fade`
+- `overlay-show`
+- `content-show`
+
+## Typography
+
+- **Font Family**: DM Sans (configured in Tailwind)
+- Use semantic text sizes and weights
+- Maintain consistent spacing and hierarchy
+
+## Component Styling Patterns
+
+- Use Tailwind classes directly in components
+- Group related styles logically
+- Use responsive prefixes when needed (`sm:`, `md:`, `lg:`)
+- Leverage custom CSS variables for dynamic theming
+
+## Best Practices
+
+1. Prefer Tailwind utilities over custom CSS
+2. Use the `cn()` function for all className logic
+3. Follow the established color palette
+4. Use custom animations for consistent motion
+5. Maintain responsive design principles

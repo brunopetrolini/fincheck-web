@@ -1,0 +1,52 @@
+---
+globs: src/app/services/**/*
+description: API services structure and patterns for backend communication
+---
+
+# API Services Architecture
+
+## Service Organization
+
+Services are organized in dedicated folders under [src/app/services/](mdc:src/app/services/):
+
+- Each service has a folder (e.g., [AuthService/](mdc:src/app/services/AuthService/))
+- Main [index.ts](mdc:src/app/services/AuthService/index.ts) exports all methods
+- Individual methods in separate files (e.g., [sign-in.ts](mdc:src/app/services/AuthService/sign-in.ts))
+
+## API Client Configuration
+
+- Base API configuration in [api.ts](mdc:src/app/services/api.ts)
+- Uses Axios with interceptors for auth tokens
+- Consistent error handling across all services
+
+## Service Patterns
+
+```typescript
+// Individual service method
+export async function signIn(params: SignInParams) {
+  const { data } = await api.post('/auth/signin', params);
+  return data;
+}
+
+// Service index file
+export { signIn } from './sign-in';
+export { signUp } from './sign-up';
+```
+
+## React Query Integration
+
+- All API calls should use React Query
+- Define query keys in [react-query-keys.ts](mdc:src/app/config/react-query-keys.ts)
+- Use consistent naming: `users.me()`, `auth.signIn()`, etc.
+
+## Error Handling
+
+- Services throw errors that React Query catches
+- Use react-hot-toast for user notifications
+- Implement proper loading and error states in components
+
+## Authentication
+
+- JWT tokens handled automatically via Axios interceptors
+- Auth state managed through [AuthContext](mdc:src/app/contexts/AuthContext.tsx)
+- Protected routes via [AuthGuard](mdc:src/Router/AuthGuard.tsx)

@@ -1,0 +1,54 @@
+---
+alwaysApply: true
+description: Development tools, commands, and best practices for Fincheck Web
+---
+
+# Development Tools & Commands
+
+## Available Scripts
+
+Commands defined in [package.json](mdc:package.json):
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm lint` - Run ESLint
+- `pnpm lint:fix` - Fix ESLint issues
+- `pnpm format` - Format code with Prettier
+- `pnpm preview` - Preview production build
+
+## Code Quality Tools
+
+- **ESLint**: TypeScript, React Hooks, and Prettier integration
+- **Prettier**: Code formatting with Tailwind plugin for class sorting
+- **TypeScript**: Strict mode enabled for better type safety
+
+## Development Features
+
+- **Vite**: Fast development server with HMR
+- **React Query DevTools**: Available in development mode
+- **Path Aliases**: `@/` points to `src/` directory
+
+## Best Practices
+
+1. Run `pnpm lint:fix` before commits
+2. Use TypeScript strict mode
+3. Leverage React Query DevTools for debugging
+4. Follow established file naming conventions
+5. Use semantic commit messages (Conventional Commits)
+6. Test components with proper loading and error states
+7. Implement accessibility best practices
+8. Keep components focused and single-responsibility
+
+## Error Handling
+
+- Use react-hot-toast for user notifications
+- Implement proper error boundaries
+- Handle API errors gracefully with user-friendly messages
+- Use React Query's error handling features
+
+## Form Handling
+
+- Use React Hook Form for all forms
+- Validate with Zod schemas
+- Implement proper loading and disabled states
+- Show validation errors clearly to users

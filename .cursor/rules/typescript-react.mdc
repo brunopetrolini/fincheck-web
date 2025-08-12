@@ -1,0 +1,51 @@
+---
+globs: *.ts,*.tsx
+description: TypeScript and React coding standards and patterns
+---
+
+# TypeScript & React Standards
+
+## TypeScript Conventions
+
+- **Component Props**: Use type aliases instead of interfaces for component props [[memory:4490742]]
+- **HTML Element Extension**: Leverage `ComponentProps<'element'>` for extending native HTML props
+- **Strict Typing**: Use proper type definitions for all functions and components
+
+Example:
+
+```typescript
+type ButtonProps = ComponentProps<'button'> & {
+  variant?: 'primary' | 'secondary';
+}
+
+export function Button({ variant = 'primary', ...props }: ButtonProps) {
+  // implementation
+}
+```
+
+## React Component Patterns
+
+- **Function Declaration**: Use function declarations: `export function ComponentName()`
+- **Props Destructuring**: Use destructuring with default values in parameters
+- **Children Typing**: Use `ReactNode` for proper children typing
+- **Custom Hooks**: Extract component logic into custom hooks (e.g., [useLoginController.ts](mdc:src/ui/pages/Login/useLoginController.ts))
+
+## State Management
+
+- **Server State**: Use React Query for all API calls and caching
+- **Query Keys**: Define in [react-query-keys.ts](mdc:src/app/config/react-query-keys.ts)
+- **Global State**: Use React Context pattern (see [AuthContext.tsx](mdc:src/app/contexts/AuthContext.tsx))
+- **Component State**: Use `useState` and `useReducer` for local state
+
+## File Naming
+
+- **Components**: PascalCase (e.g., `Button.tsx`, `UserMenu.tsx`)
+- **Hooks**: camelCase with 'use' prefix (e.g., `useAuth.ts`)
+- **Services**: PascalCase with 'Service' suffix (e.g., `AuthService/`)
+- **Utils**: camelCase (e.g., `formatCurrency.ts`)
+
+## Import Organization
+
+- Use path alias `@/` for src directory imports (configured in [vite.config.ts](mdc:vite.config.ts))
+- ESLint `simple-import-sort` plugin handles automatic sorting
+- Group: external libraries → internal modules → relative imports
