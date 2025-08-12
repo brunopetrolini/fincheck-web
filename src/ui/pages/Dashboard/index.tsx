@@ -1,4 +1,5 @@
 import { Logo } from '@/ui/components/Logo';
+import { Modal } from '@/ui/components/Modal';
 import { UserMenu } from '@/ui/components/UserMenu';
 
 import { Accounts } from './components/Accounts';
@@ -26,6 +27,12 @@ export function Dashboard() {
         </main>
 
         <FloatActionButton />
+
+        <Modal open title="Filtros" rightAction="RA">
+          <div>
+            <p>Content</p>
+          </div>
+        </Modal>
       </div>
     </DashboardProvider>
   );
