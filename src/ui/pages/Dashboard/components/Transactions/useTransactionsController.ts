@@ -12,12 +12,25 @@ export function useTransactionsController() {
     isEnd: false,
   });
 
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(true);
+
+  function handleOpenFiltersModal() {
+    setIsFiltersModalOpen(true);
+  }
+
+  function handleCloseFiltersModal() {
+    setIsFiltersModalOpen(false);
+  }
+
   return {
     sliderState,
     setSliderState,
     areValuesVisible,
     isLoading,
     isContentLoading,
+    isFiltersModalOpen,
+    handleOpenFiltersModal,
+    handleCloseFiltersModal,
     transactions: [
       { id: 1, description: 'Compra no Nubank', amount: 100, date: '15/03/2023', type: 'EXPENSE' },
       { id: 2, description: 'Transferência para XP', amount: 200, date: '16/03/2023', type: 'INCOME' },
