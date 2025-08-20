@@ -12,7 +12,7 @@ export function useTransactionsController() {
     isEnd: false,
   });
 
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(true);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
 
   function handleOpenFiltersModal() {
     setIsFiltersModalOpen(true);
