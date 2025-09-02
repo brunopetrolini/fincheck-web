@@ -6,7 +6,7 @@ import { useDashboard } from '../DashboardContext/useDashboard';
 
 export function useAccountsController() {
   const [isLoading] = useState(false);
-  const { areValuesVisible, toggleValuesVisibility } = useDashboard();
+  const { areValuesVisible, toggleValuesVisibility, openNewAccountModal } = useDashboard();
 
   const windowWidth = useWindowWidth();
 
@@ -22,6 +22,7 @@ export function useAccountsController() {
     areValuesVisible,
     toggleValuesVisibility,
     isLoading,
+    openNewAccountModal,
     accounts: [
       { id: 1, name: 'Nubank', balance: 123, type: 'CASH' as const, color: '#7950F2' },
       { id: 2, name: 'XP', balance: 123, type: 'INVESTMENT' as const, color: '#333' },

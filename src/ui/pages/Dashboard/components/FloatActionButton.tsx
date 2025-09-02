@@ -4,7 +4,11 @@ import { DropDown } from '@/ui/components/DropDown';
 import { BankAccountIcon } from '@/ui/components/icons/BankAccountIcon';
 import { CategoryIcon } from '@/ui/components/icons/categories/CategoryIcon';
 
+import { useDashboard } from './DashboardContext/useDashboard';
+
 export function FloatActionButton() {
+  const { openNewAccountModal } = useDashboard();
+
   return (
     <DropDown.Menu>
       <DropDown.Trigger className="fixed bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal-900 text-white transition-colors hover:bg-teal-800">
@@ -20,7 +24,7 @@ export function FloatActionButton() {
           <CategoryIcon type="INCOME" size={32} />
           Nova receita
         </DropDown.Item>
-        <DropDown.Item onClick={() => {}} className="gap-2">
+        <DropDown.Item onClick={openNewAccountModal} className="gap-2">
           <BankAccountIcon size={32} />
           Nova conta
         </DropDown.Item>

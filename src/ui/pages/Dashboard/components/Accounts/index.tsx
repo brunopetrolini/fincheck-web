@@ -13,8 +13,16 @@ import { SliderNavigation } from './SliderNavigation';
 import { useAccountsController } from './useAccountsController';
 
 export function Accounts() {
-  const { sliderState, setSliderState, windowWidth, areValuesVisible, toggleValuesVisibility, isLoading, accounts } =
-    useAccountsController();
+  const {
+    sliderState,
+    setSliderState,
+    windowWidth,
+    areValuesVisible,
+    toggleValuesVisibility,
+    isLoading,
+    accounts,
+    openNewAccountModal,
+  } = useAccountsController();
 
   return (
     <div className="flex h-full flex-col rounded-2xl bg-teal-900 px-4 py-8 text-white lg:p-10">
@@ -47,7 +55,10 @@ export function Accounts() {
                   <strong className="text-lg tracking-[-1px]">Minhas contas</strong>
                 </div>
 
-                <button className="mt-4 flex h-52 w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-teal-600">
+                <button
+                  onClick={openNewAccountModal}
+                  className="mt-4 flex h-52 w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-teal-600"
+                >
                   <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-dashed border-white">
                     <PlusIcon className="h-6 w-6" />
                   </div>
