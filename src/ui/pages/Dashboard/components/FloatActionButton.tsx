@@ -7,7 +7,7 @@ import { CategoryIcon } from '@/ui/components/icons/categories/CategoryIcon';
 import { useDashboard } from './DashboardContext/useDashboard';
 
 export function FloatActionButton() {
-  const { openNewAccountModal } = useDashboard();
+  const { openNewAccountModal, openNewTransactionModal } = useDashboard();
 
   return (
     <DropDown.Menu>
@@ -16,11 +16,11 @@ export function FloatActionButton() {
       </DropDown.Trigger>
 
       <DropDown.Content anchor="top end" className="-mt-2">
-        <DropDown.Item onClick={() => {}} className="gap-2">
+        <DropDown.Item onClick={() => openNewTransactionModal('expense')} className="gap-2">
           <CategoryIcon type="EXPENSE" size={32} />
           Nova despesa
         </DropDown.Item>
-        <DropDown.Item onClick={() => {}} className="gap-2">
+        <DropDown.Item onClick={() => openNewTransactionModal('income')} className="gap-2">
           <CategoryIcon type="INCOME" size={32} />
           Nova receita
         </DropDown.Item>
